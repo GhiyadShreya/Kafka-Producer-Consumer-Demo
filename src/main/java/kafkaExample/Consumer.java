@@ -18,12 +18,12 @@ public class Consumer {
         KafkaConsumer consumer = new KafkaConsumer(props);
         consumer.subscribe(Arrays.asList("odd", "even"));
         int counter = 0;
-        while (counter <= 1000) {
+        while (counter <= 10000) {
             ConsumerRecords<String, String> recs = consumer.poll(10);
             if (recs.count() == 0) {
             } else {
                 for (ConsumerRecord<String, String> rec : recs) {
-                    System.out.printf("Recieved %s: %s", rec.key(), rec.value());
+                    System.out.printf(" Received %s: %s", rec.key(), rec.value());
                 }
             }
             counter++;
