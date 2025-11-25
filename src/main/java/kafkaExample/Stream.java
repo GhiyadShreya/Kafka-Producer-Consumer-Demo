@@ -20,7 +20,7 @@ public class Stream {
         KStreamBuilder builder = new KStreamBuilder();
         KStream<String, String> stream = builder.stream("odd", "even");
         KStream<String, String> joined = stream
-                .map((key, value) -> KeyValue.pair(key, key.concat(value)));
+                .map((key, value) -> KeyValue.pair(key, key.concat(" "+value)));
         joined.to("odd-even");
         KafkaStreams kafkaStreams = new KafkaStreams(builder, config);
         kafkaStreams.start();
